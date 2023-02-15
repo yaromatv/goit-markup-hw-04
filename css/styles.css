@@ -190,7 +190,14 @@ body {
 
 .footer-list {
     display: flex;
-    gap: 120px;
+}
+
+/* .footer-margin {
+    margin-right: 120px;
+} */
+
+.footer-list div:first-child {
+    margin-right: 120px;
 }
 
 .footer-sm-text {
@@ -217,15 +224,18 @@ body {
 /* INDEX MAIN */
 .hero {
     height: 600px;
-    max-width: 1440рх;
+    max-width: 1440px;
     text-align: center;
-    background-image: linear-gradient( rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
-    url(../images/people-office.jpg);
+    background-image: linear-gradient(
+            rgba(46, 47, 66, 0.7),
+            rgba(46, 47, 66, 0.7)
+        ),
+        url(../images/people-office.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     padding: 188px 0;
-    back
+    margin: 0 auto;
 }
 
 .hero-title {
@@ -331,17 +341,18 @@ body {
 .customer-icon {
     height: 88px;
     width: 168px;
-    border: 1px solid var(--customers-icon);
+    border: 1px solid currentColor;
     border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
-    fill: var(--customers-icon);
+    fill: currentColor;
+    color: var(--customers-icon);
 }
 
-.customer-icon:hover {
-    fill: var(--accent-color-hover);
-    border: 1px solid var(--accent-color-hover);
+.customer-icon:hover,
+.customer-icon:focus {
+    color: var(--accent-color-hover);
 }
 
 /* PORTFOLIO MAIN */
@@ -394,9 +405,13 @@ body {
 
 .portfolio-item:hover,
 .portfolio-item:focus {
-box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+        0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
 }
 
+.portfolio-link {
+    display: block;
+}
 
 .portfolio .card-text {
     border: var(--accent-color-medium) solid 1px;
@@ -404,7 +419,6 @@ box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.1
 }
 
 .portfolio .card-text:hover {
-    
     border: 1px solid var(--accent-color-light);
     border-top: 0;
 }
