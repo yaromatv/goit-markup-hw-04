@@ -55,6 +55,8 @@ ol {
     --accent-color-medium: #e7e9fc; /* CORNFLOWER */
     --footer-icon-hover: #31d0aa;
     --customers-icon: #8e8f99; /* LIGHT SLATE */
+    --transition-timing: 1250ms;
+    --transition-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .outline {
@@ -88,12 +90,32 @@ body {
     text-decoration: none;
     color: inherit;
     font-style: normal;
+
+    transition: color var(--transition-timing) var(--transition-function);
 }
 
 .link:hover,
-.link:focus,
-.link.current {
+.link:focus {
     color: var(--accent-color);
+}
+
+.link.current {
+    position: relative;
+
+    color: var(--accent-color-hover);
+}
+
+.current::after {
+    content: "";
+
+    position: absolute;
+    top: 66px;
+
+    display: block;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--accent-color-hover);
 }
 
 .button-pointer {
@@ -214,11 +236,85 @@ body {
 
 .social-media-icon.footer-social-media-icon {
     background-color: rgba(255, 255, 255, 0.1);
+
+    transition: background-color var(--transition-timing)
+        var(--transition-function);
 }
 
 .social-media-icon.footer-social-media-icon:hover,
 .social-media-icon.footer-social-media-icon:focus {
     background-color: var(--footer-icon-hover);
+}
+
+/* MODAL */
+.backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    opacity: 1;
+    background-color: rgba(46, 47, 66, 0.4);
+
+    transition: opacity var(--transition-timing) var(--transition-function);
+}
+
+.backdrop.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+    bottom: 0;
+    transform: translate(-50%, 50%) scale(0.9);
+}
+
+.modal {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%) scale(1);
+
+    width: 408px;
+    height: 576px;
+
+    background: #fcfcfc;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+        0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+    transition: transform var(--transition-timing) var(--transition-function),
+        bottom var(--transition-timing) var(--transition-function);
+}
+
+.close-modal {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 24px;
+    height: 24px;
+
+    background-color: var(--accent-color-medium);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+
+    transition: background-color var(--transition-timing)
+            var(--transition-function),
+        fill var(--transition-timing) var(--transition-function),
+        border-color var(--transition-timing) var(--transition-function);
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    background-color: var(--accent-color-hover);
+    border-color: transparent;
+    fill: #fff;
 }
 
 /* INDEX MAIN */
@@ -264,7 +360,11 @@ body {
     display: inline-block;
     padding: 16px 32px;
     margin-top: 48px;
+
+    transition: background-color var(--transition-timing)
+        var(--transition-function);
 }
+
 .hero-button:hover,
 .hero-button:focus {
     background-color: var(--accent-color-hover);
@@ -331,6 +431,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    transition: background-color var(--transition-timing)
+        var(--transition-function);
 }
 
 .social-media-icon:hover,
@@ -348,6 +451,8 @@ body {
     align-items: center;
     fill: currentColor;
     color: var(--customers-icon);
+
+    transition: color var(--transition-timing) var(--transition-function);
 }
 
 .customer-icon:hover,
@@ -382,6 +487,11 @@ body {
 
     display: inline-block;
     padding: 12px 24px;
+
+    transition: color var(--transition-timing) var(--transition-function),
+        background-color var(--transition-timing) var(--transition-function),
+        box-shadow var(--transition-timing) var(--transition-function),
+        border-color var(--transition-timing) var(--transition-function);
 }
 
 .filter-button:hover,
@@ -409,9 +519,15 @@ body {
         0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
 }
 
-.portfolio-link {
+/* .portfolio-link {
     display: block;
-}
+} */
+
+/* .portfolio-link:hover,
+.portfolio-link:focus {
+    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+        0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+} */
 
 .portfolio .card-text {
     border: var(--accent-color-medium) solid 1px;
